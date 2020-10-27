@@ -61,5 +61,4 @@ public class Main extends Application
         //Displaying the contents of a scene
         stage.show();
     }
-
 }
