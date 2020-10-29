@@ -1,5 +1,6 @@
 package Main;
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -11,7 +12,7 @@ import javafx.scene.text.Text;
  */
 public class StatusIndicatorSchachl extends GaugeBase
 {
-    private int value = 0;
+    private int value;
 
     public StatusIndicatorSchachl()
     {
@@ -21,14 +22,22 @@ public class StatusIndicatorSchachl extends GaugeBase
     @Override
     public void redraw()
     {
-        ProgressIndicator progressIndicator = new ProgressIndicator(this.value);
+        double progressValue = (double)value;
+        System.out.println(progressValue);
+        double progress = progressValue / 100;
 
-        Text t = new Text();
-        t.setText(String.valueOf(this.value));
-        t.setFont(Font.font ("Verdana", 20));
-        t.setFill(Color.BLACK);
+        ProgressIndicator progressIndicator = new ProgressIndicator(0.0);
+        progressIndicator.setPrefSize(50000, 50000);
+        progressIndicator.setProgress(progress);
+        System.out.println(progress);
 
-        progressIndicator.setProgress(this.value);
-        this.getChildren().addAll(progressIndicator, t);
+        this.getChildren().addAll(progressIndicator);
+    }
+
+    @Override
+    public void setValue(int v)
+    {
+        this.value = v;
+        this.redraw();
     }
 }
