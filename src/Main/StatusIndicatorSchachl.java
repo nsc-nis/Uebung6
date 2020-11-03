@@ -24,8 +24,10 @@ public class StatusIndicatorSchachl extends GaugeBase
     public void redraw()
     {
         Gauge gauge = new Gauge();
-        gauge.setTitle("Fortschritt (in %)");
+
+        gauge.setValue(0);
         gauge.setUnitColor(Color.WHITE);
+        gauge.setValueColor(Color.WHITE);
         gauge.setDecimals(0);
         gauge.setValue(value);
         gauge.setAnimated(true);
@@ -33,6 +35,7 @@ public class StatusIndicatorSchachl extends GaugeBase
         gauge.setPrefSize(200,200);
 
         gauge.setBarColor(Color.rgb(0, 214, 215));
+        gauge.clearAreas();
 
         gauge.setSkin(new BarSkin(gauge));
 
