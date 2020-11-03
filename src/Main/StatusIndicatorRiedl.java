@@ -2,11 +2,11 @@ package Main;
 
 import javafx.scene.control.ProgressIndicator;
 
-public class GaugeAdvanced extends GaugeBase
+public class StatusIndicatorRiedl extends GaugeBase
 {
     private int value;
 
-    public GaugeAdvanced() {
+    public StatusIndicatorRiedl() {
     }
     @Override
     public void redraw()

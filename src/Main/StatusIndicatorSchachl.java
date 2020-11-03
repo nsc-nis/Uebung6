@@ -1,10 +1,7 @@
 package Main;
 
 import eu.hansolo.medusa.Gauge;
-import eu.hansolo.medusa.TickLabelOrientation;
 import eu.hansolo.medusa.skins.BarSkin;
-import eu.hansolo.medusa.skins.ModernSkin;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.paint.Color;
 
 /**

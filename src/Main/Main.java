@@ -1,60 +1,78 @@
 package Main;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application
 {
-    //GaugeBase gb = new GaugeBase();
+    StatusIndicatorRiedl riedl = new StatusIndicatorRiedl();
+    StatusIndicatorSchachl schachl = new StatusIndicatorSchachl();
+    Steiner steiner = new Steiner();
+
     TextField txtValue = new TextField();
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // Launch the JavaFX application
         Application.launch(args);
     }
 
-    @Override public void start(Stage stage) {
+    @Override
+    public void start(Stage stage)
+    {
+        VBox box_main = new VBox();
+        box_main.setPadding(new Insets(10, 50, 50, 50));
+        //box_main.setSpacing(20);
+        ObservableList list_main = box_main.getChildren();
 
-        StatusIndicatorSchachl statusIndicatorSchachl = new StatusIndicatorSchachl();
-        EventHandler<MouseEvent> btn_handler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent e) {
-
-                try {
-                    int v = Integer.parseInt(txtValue.getText());
-                    //gb.setValue(v);
-                    statusIndicatorSchachl.setValue(v);
-                }
-                catch(Exception ex) {
-                    System.out.println("Input Exception!");
-                }
-
-            }
-        };
-
-        //gb.init(500, 500);
-        //gb.setValue(45);
+        HBox box_grid = new HBox();
+        box_grid.setPadding(new Insets(10, 50, 50, 50));
+        box_grid.setSpacing(20);
+        ObservableList list_grid = box_grid.getChildren();
 
         Button btnValue = new Button();
         btnValue.setText("New Value");
-        btnValue.addEventHandler(MouseEvent.MOUSE_CLICKED, btn_handler);
+        btnValue.setOnAction(event ->
+        {
+            try {
+                int v = Integer.parseInt(txtValue.getText());
+                riedl.setValue(v);
+                schachl.setValue(v);
+                steiner.setValue(v);
+                list_grid.addAll(schachl, steiner, riedl);
+            }
+            catch(Exception ex) {
+                System.out.println("Input Exception!");
+            }
+        });
 
-        VBox vBox = new VBox();
-        vBox.setPadding(new Insets(10, 50, 50, 50));
-        vBox.setSpacing(20);
-        //vBox.getChildren().addAll(gb, txtValue, btnValue);
-        vBox.getChildren().addAll(statusIndicatorSchachl, txtValue, btnValue);
+        Button button_clear = new Button();
+        button_clear.setText("Clear");
+        button_clear.setOnAction(event ->
+        {
+            riedl.setValue(0);
+            schachl.setValue(0);
+            steiner.setValue(0);
+            list_grid.removeAll(riedl, schachl, steiner);
+        });
+
+        list_main.add(box_grid);
+        list_main.add(txtValue);
+        list_main.add(btnValue);
+        list_main.add(button_clear);
 
         //Creating a Scene
-        Scene scene = new Scene(vBox, 500, 500);
+        Scene scene = new Scene(box_main, 700, 500);
 
         //Setting title to the scene
         stage.setTitle("Gauge Collection");
