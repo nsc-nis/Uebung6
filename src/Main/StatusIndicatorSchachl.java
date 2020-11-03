@@ -1,10 +1,6 @@
 package Main;
 
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 /**
  * @author Niklas Schachl
@@ -23,13 +19,11 @@ public class StatusIndicatorSchachl extends GaugeBase
     public void redraw()
     {
         double progressValue = (double)value;
-        System.out.println(progressValue);
         double progress = progressValue / 100;
 
         ProgressIndicator progressIndicator = new ProgressIndicator(0.0);
         progressIndicator.setPrefSize(50000, 50000);
         progressIndicator.setProgress(progress);
-        System.out.println(progress);
 
         this.getChildren().addAll(progressIndicator);
     }
