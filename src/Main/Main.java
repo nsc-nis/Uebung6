@@ -15,7 +15,6 @@ public class Main extends Application
 {
     //GaugeBase gb = new GaugeBase();
     TextField txtValue = new TextField();
-    StatusIndicatorSchachl statusIndicatorSchachl = new StatusIndicatorSchachl();
 
     public static void main(String[] args) {
         // Launch the JavaFX application
@@ -24,6 +23,7 @@ public class Main extends Application
 
     @Override public void start(Stage stage) {
 
+        StatusIndicatorSchachl statusIndicatorSchachl = new StatusIndicatorSchachl();
         EventHandler<MouseEvent> btn_handler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
@@ -54,7 +54,7 @@ public class Main extends Application
         vBox.getChildren().addAll(statusIndicatorSchachl, txtValue, btnValue);
 
         //Creating a Scene
-        Scene scene = new Scene(vBox);
+        Scene scene = new Scene(vBox, 500, 500);
 
         //Setting title to the scene
         stage.setTitle("Gauge Collection");

@@ -1,6 +1,11 @@
 package Main;
 
+import eu.hansolo.medusa.Gauge;
+import eu.hansolo.medusa.TickLabelOrientation;
+import eu.hansolo.medusa.skins.BarSkin;
+import eu.hansolo.medusa.skins.ModernSkin;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.paint.Color;
 
 /**
  * @author Niklas Schachl
@@ -18,14 +23,20 @@ public class StatusIndicatorSchachl extends GaugeBase
     @Override
     public void redraw()
     {
-        double progressValue = (double)value;
-        double progress = progressValue / 100;
+        Gauge gauge = new Gauge();
+        gauge.setTitle("Fortschritt (in %)");
+        gauge.setUnitColor(Color.WHITE);
+        gauge.setDecimals(0);
+        gauge.setValue(value);
+        gauge.setAnimated(true);
+        gauge.setAutoScale(true);
+        gauge.setPrefSize(200,200);
 
-        ProgressIndicator progressIndicator = new ProgressIndicator(0.0);
-        progressIndicator.setPrefSize(50000, 50000);
-        progressIndicator.setProgress(progress);
+        gauge.setBarColor(Color.rgb(0, 214, 215));
 
-        this.getChildren().addAll(progressIndicator);
+        gauge.setSkin(new BarSkin(gauge));
+
+        this.getChildren().addAll(gauge);
     }
 
     @Override
