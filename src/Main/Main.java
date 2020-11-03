@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application
 {
-    GaugeBase gb = new GaugeBase();
+    //GaugeBase gb = new GaugeBase();
     TextField txtValue = new TextField();
 
     public static void main(String[] args) {
@@ -23,13 +23,15 @@ public class Main extends Application
 
     @Override public void start(Stage stage) {
 
+        StatusIndicatorSchachl statusIndicatorSchachl = new StatusIndicatorSchachl();
         EventHandler<MouseEvent> btn_handler = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
 
                 try {
                     int v = Integer.parseInt(txtValue.getText());
-                    gb.setValue(v);
+                    //gb.setValue(v);
+                    statusIndicatorSchachl.setValue(v);
                 }
                 catch(Exception ex) {
                     System.out.println("Input Exception!");
@@ -38,8 +40,8 @@ public class Main extends Application
             }
         };
 
-        gb.init(500, 500);
-        gb.setValue(45);
+        //gb.init(500, 500);
+        //gb.setValue(45);
 
         Button btnValue = new Button();
         btnValue.setText("New Value");
@@ -48,10 +50,11 @@ public class Main extends Application
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(10, 50, 50, 50));
         vBox.setSpacing(20);
-        vBox.getChildren().addAll(gb, txtValue, btnValue);
+        //vBox.getChildren().addAll(gb, txtValue, btnValue);
+        vBox.getChildren().addAll(statusIndicatorSchachl, txtValue, btnValue);
 
         //Creating a Scene
-        Scene scene = new Scene(vBox);
+        Scene scene = new Scene(vBox, 500, 500);
 
         //Setting title to the scene
         stage.setTitle("Gauge Collection");
@@ -61,5 +64,4 @@ public class Main extends Application
         //Displaying the contents of a scene
         stage.show();
     }
-
 }
