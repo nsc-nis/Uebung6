@@ -12,7 +12,6 @@ public class Steiner extends GaugeBase{
     @Override
     public void redraw()
     {
-
         Gauge gauge = new Gauge();
 
         gauge.setSkin(new ModernSkin(gauge));
@@ -45,5 +44,4 @@ public class Steiner extends GaugeBase{
         this.value = v;
         this.redraw();
     }
-
 }

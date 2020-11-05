@@ -2,28 +2,27 @@ package Main;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application
 {
+    /*
     StatusIndicatorRiedl riedl = new StatusIndicatorRiedl();
     StatusIndicatorSchachl schachl = new StatusIndicatorSchachl();
     Steiner steiner = new Steiner();
+
+     */
 
     TextField txtValue = new TextField();
 
     public static void main(String[] args)
     {
-        // Launch the JavaFX application
         Application.launch(args);
     }
 
@@ -32,7 +31,7 @@ public class Main extends Application
     {
         VBox box_main = new VBox();
         box_main.setPadding(new Insets(10, 50, 50, 50));
-        //box_main.setSpacing(20);
+        box_main.setSpacing(20);
         ObservableList list_main = box_main.getChildren();
 
         HBox box_grid = new HBox();
@@ -45,10 +44,17 @@ public class Main extends Application
         btnValue.setOnAction(event ->
         {
             try {
+                StatusIndicatorRiedl riedl = new StatusIndicatorRiedl();
+                StatusIndicatorSchachl schachl = new StatusIndicatorSchachl();
+                Steiner steiner = new Steiner();
+
+                box_grid.getChildren().clear();
+
                 int v = Integer.parseInt(txtValue.getText());
                 riedl.setValue(v);
                 schachl.setValue(v);
                 steiner.setValue(v);
+
                 list_grid.addAll(schachl, steiner, riedl);
             }
             catch(Exception ex) {
@@ -56,6 +62,7 @@ public class Main extends Application
             }
         });
 
+        /*
         Button button_clear = new Button();
         button_clear.setText("Clear");
         button_clear.setOnAction(event ->
@@ -66,10 +73,12 @@ public class Main extends Application
             list_grid.removeAll(riedl, schachl, steiner);
         });
 
+         */
+
         list_main.add(box_grid);
         list_main.add(txtValue);
         list_main.add(btnValue);
-        list_main.add(button_clear);
+        //list_main.add(button_clear);
 
         //Creating a Scene
         Scene scene = new Scene(box_main, 700, 500);
