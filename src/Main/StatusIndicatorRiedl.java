@@ -13,7 +13,6 @@ public class StatusIndicatorRiedl extends GaugeBase
     {
         double progressValue = (double)value;
         double progress = progressValue / 100;
-
         ProgressIndicator progressIndicator = new ProgressIndicator(0.0);
         progressIndicator.setPrefSize(50000, 50000);
         progressIndicator.setProgress(progress);
