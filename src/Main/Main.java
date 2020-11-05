@@ -49,13 +49,14 @@ public class Main extends Application
                 Steiner steiner = new Steiner();
 
                 box_grid.getChildren().clear();
-
+                
                 int v = Integer.parseInt(txtValue.getText());
                 riedl.setValue(v);
                 schachl.setValue(v);
                 steiner.setValue(v);
 
                 list_grid.addAll(schachl, steiner, riedl);
+                txtValue.clear();
             }
             catch(Exception ex) {
                 System.out.println("Input Exception!");
