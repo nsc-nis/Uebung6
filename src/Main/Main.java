@@ -47,6 +47,7 @@ public class Main extends Application
                 StatusIndicatorRiedl riedl = new StatusIndicatorRiedl();
                 StatusIndicatorSchachl schachl = new StatusIndicatorSchachl();
                 Steiner steiner = new Steiner();
+                Stadler stadler = new Stadler();
 
                 box_grid.getChildren().clear();
                 
@@ -54,8 +55,9 @@ public class Main extends Application
                 riedl.setValue(v);
                 schachl.setValue(v);
                 steiner.setValue(v);
+                stadler.setValue(v);
 
-                list_grid.addAll(schachl, steiner, riedl);
+                list_grid.addAll(schachl, steiner, stadler, riedl);
                 txtValue.clear();
             }
             catch(Exception ex) {
